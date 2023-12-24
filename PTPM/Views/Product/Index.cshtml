@@ -19,64 +19,80 @@
         <div class="section-header">
             <h1>các sản phẩm hiện có</h1>
         </div>
-        <div class="row shop_wrapper grid_list">
-            @if (Model != null && Model.Count() > 0)
-            {
-                foreach (var item in Model)
+        <div class="col-lg-9 col-12 col-custom widget-mt">
+           
+            <!-- Shop Wrapper Start -->
+            <div class="row shop_wrapper grid_list">
+                @if (Model != null && Model.Count() > 0)
                 {
-                    string url = $"/{item.Alias}-{item.ProductId}.html";
-                    <div class="col-12 col-custom product-area">
-                        <div class="single-product position-relative">
-                            <div class="product-image">
-                                <a class="d-block" href="@url">
+                    foreach (var item in Model)
+                    {
+                        string url = $"/{item.Alias}-{item.ProductId}.html";
+                        <div class="col-12 col-custom product-area">
+                            <div class="single-product position-relative">
+                                <div class="product-image">
+                                    <a class="d-block" href="@url">
+                                        <img src="~/images/products/@item.Thumb" alt="@item.Title" class="product-image-1 w-100" />  
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-title">
+                                        <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="regular-price ">@item.Price.Value.ToString("#,##0") VNĐ</span>
 
-                                    <img src="~/images/products/@item.Thumb" alt="@item.Title" class="product-image-1 w-100" />
-                                    <img src="~/images/products/@item.Thumb" alt="@item.Title" class="product-image-2 position-absolute w-100" />
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-title">
-                                    <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
+                                    </div>
                                 </div>
-                                <div class="price-box">
-                                    <span class="regular-price ">@item.Price.Value.ToString("#,##0") VNĐ</span>
-
-                                </div>
-                            </div>
-                            <div class="add-action d-flex position-absolute">
-                                <a href="cart.html" title="Thêm Vào Giỏ">
-                                    <i class="ion-bag"></i>
-                                </a>
-                                <a href="compare.html" title="Compare">
-                                    <i class="ion-ios-loop-strong"></i>
-                                </a>
-                                <a href="wishlist.html" title="Thêm Vào Danh Sách Mong Muốn">
-                                    <i class="ion-ios-heart-outline"></i>
-                                </a>
-                            </div>
-                            <div class="product-content-listview">
-                                <div class="product-title">
-                                    <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
-                                </div>
-                                <div class="price-box">
-                                    <span class="regular-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
-
-                                </div>
-                                <div class="add-action-listview d-flex">
+                                <div class="add-action d-flex position-absolute">
                                     <a href="cart.html" title="Thêm Vào Giỏ">
                                         <i class="ion-bag"></i>
                                     </a>
+                                    <a href="compare.html" title="Compare">
+                                        <i class="ion-ios-loop-strong"></i>
+                                    </a>
+                                    <a href="wishlist.html" title="Thêm Vào Danh Sách Mong Muốn">
+                                        <i class="ion-ios-heart-outline"></i>
+                                    </a>
+                                    <a href="#exampleModalCenter" data-bs-toggle="modal" title="Xem Nhanh">
+                                        <i class="ion-eye"></i>
+                                    </a>
                                 </div>
-                                <p class="desc-content">
-                                    @Html.Raw(item.ShortDesc)
-                                </p>
+                                <div class="product-content-listview">
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <div class="product-title">
+                                        <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="regular-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+
+                                    </div>
+                                    <div class="add-action-listview d-flex">
+                                        <a href="cart.html" title="Thêm Vào Giỏ">
+                                            <i class="ion-bag"></i>
+                                        </a>
+
+                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Xem Nhanh">
+                                            <i class="ion-eye"></i>
+                                        </a>
+                                    </div>
+                                    <p class="desc-content">
+                                        @Html.Raw(item.ShortDesc)
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
 
 
+            </div>
         </div>
     </div>
 </body>

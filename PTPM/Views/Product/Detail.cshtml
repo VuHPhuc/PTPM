@@ -4,5 +4,242 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Detail</h1>
+<div class="single-product-main-area">
+	<div class="container container-default custom-area">
+		<div class="row">
+			<div class="col-lg-5 col-custom">
+				<div class="product-details-img horizontal-tab">
+					<div class="product-slider popup-gallery product-details_slider" data-slick-options='{
+						"slidesToShow": 1,
+						"arrows": false,
+						"fade": true,
+						"draggable": false,
+						"swipe": false,
+						"asNavFor": ".pd-slider-nav"
+						}'>
+						<div class="single-image border">
+							<a href="~/images/products/@Model.Thumb">
+								<img src="~/images/products/@Model.Thumb" alt="@Model.Title" />
 
+							</a>
+						</div>
+
+					</div>
+					<div class="pd-slider-nav product-slider" data-slick-options='{
+						"slidesToShow": 4,
+						"asNavFor": ".product-details_slider",
+						"focusOnSelect": true,
+						"arrows" : false,
+						"spaceBetween": 30,
+						"vertical" : false
+						}' data-slick-responsive='[
+							{"breakpoint":1501, "settings": {"slidesToShow": @Model.Thumb}},
+							{"breakpoint":1200, "settings": {"slidesToShow": 4}},
+							{"breakpoint":992, "settings": {"slidesToShow": 4}},
+							{"breakpoint":575, "settings": {"slidesToShow": 3}}
+						]'>
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-7 col-custom">
+				<div class="product-summery position-relative">
+					<div class="product-head mb-3">
+						<h2 class="product-title">@Model.ProductName</h2>
+					</div>
+					<div class="price-box mb-2">
+						<span class="regular-price">@Model.Price.Value.ToString("#,##0") VNĐ</span>
+
+					</div>
+					<div class="sku mb-3">
+						<span class="sku mb-3">Danh mục:</span>
+						<span><a href="danhmuc/@Model.CatllDNavigation.Alias">@Model.CatllDNavigation.CatName</a></span>
+					</div>
+					<p class="desc-content mb-5">
+						@Model.ShortDesc
+					</p>
+					<div class="quantity-with_btn mb-4">
+						<div class="quantity">
+							<div class="cart-plus-minus">
+
+								<input id="txtsoLuong" name="txtsoLuong" class="cart-plus-minus-box" value="1" type="text">
+								<div class="dec qtybutton">-</div>
+								<div class="inc qtybutton">+</div>
+							</div>
+						</div>
+					</div>
+					<div class="buy-button mb-5">
+						<a href="#" class="btn obrien-button-3 black-button">Đặt hàng ngay</a>
+					</div>
+					<div class="social-share mb-4">
+						<span>Chia Sẻ :</span>
+						<a href="#"><i class="fa fa-facebook-square facebook-color"></i></a>
+						<a href="#"><i class="fa fa-twitter-square twitter-color"></i></a>
+						<a href="#"><i class="fa fa-linkedin-square linkedin-color"></i></a>
+						<a href="#"><i class="fa fa-pinterest-square pinterest-color"></i></a>
+					</div>
+					<div class="payment">
+						<a href="#"><img class="border" src="~/assets/images/payment/img-payment.png" alt="Thanh Toán"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-no-text">
+			<div class="col-lg-12">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active text-uppercase" id="home-tab" data-bs-toggle="tab" href="#connect-1" role="tab" aria-selected="true">Chi Tiết Sản Phẩm</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase" id="profile-tab" data-bs-toggle="tab" href="#connect-2" role="tab" aria-selected="false">Đánh Giá</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase" id="contact-tab" data-bs-toggle="tab" href="#connect-3" role="tab" aria-selected="false">Chính Sách Vận Chuyển</a>
+					</li>
+
+				</ul>
+				<div class="tab-content mb-text" id="myTabContent">
+					<div class="tab-pane fade show active" id="connect-1" role="tabpanel" aria-labelledby="home-tab">
+						<div class="desc-content">
+							<p class="mb-3">
+								@Html.Raw(Model.Desciption)
+							</p>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
+						<!-- Start Single Content -->
+						<div class="product_tab_content  border p-3">
+							<div class="review_address_inner">
+								<!-- Start Single Review -->
+								<div class="pro_review mb-5">
+									<div class="review_thumb">
+										<img class="img_resize" alt="review images" src="~/assets/images/review/1.jpg">
+									</div>
+									<div class="review_details">
+										<div class="review_info mb-2">
+											<div class="product-rating mb-2">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<h5>Văn Dũng <span> December 19, 2023</span></h5>
+										</div>
+										<p>Mô Hình Quá Tuyệt Vời Tôi Rất Thích Nó</p>
+									</div>
+								</div>
+								<div class="pro_review mb-5">
+									<div class="review_thumb">
+										<img class="img_resize" alt="review images" src="~/assets/images/review/2.jpg">
+									</div>
+									<div class="review_details">
+										<div class="review_info mb-2">
+											<div class="product-rating mb-2">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<h5>Phúc Vũ <span> September 28, 2023</span></h5>
+										</div>
+										<p>Mô Hình Rất đẹp, Cửa Hàng Rất Nhiệt Tình</p>
+									</div>
+								</div>
+								<div class="pro_review mb-5">
+									<div class="review_thumb">
+										<img class="img_resize" alt="review images" src="~/assets/images/review/3.jpg">
+									</div>
+									<div class="review_details">
+										<div class="review_info mb-2">
+											<div class="product-rating mb-2">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<h5>Đào Tùng<span> December 19, 2023</span></h5>
+										</div>
+										<p>Mô Hình Rất Nhiều Chi Tiết Khiến Tôi Làm Mất 1 Linh Kiện, Nhưng Vẫn Rất Đẹp</p>
+									</div>
+								</div>
+								<!-- End 3 Review -->
+							</div>
+							<!-- Start RAting Area -->
+							<div class="rating_wrap">
+								<h5 class="rating-title-1 mb-2">Thêm Đánh Giá </h5>
+								<p class="mb-2">Tài Khoản Email Của Bạn Sẽ Không Bị Công Bố, Khu Vực Cần Bổ Sung *</p>
+								<h6 class="rating-title-2 mb-2">Your Rating</h6>
+								<div class="rating_list mb-4">
+									<div class="review_info">
+										<div class="product-rating mb-3">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End RAting Area -->
+							<div class="comments-area comments-reply-area">
+								<div class="row">
+									<div class="col-lg-12 col-custom">
+										<form action="#" class="comment-form-area">
+											<div class="row comment-input">
+												<div class="col-md-6 col-custom comment-form-author mb-3">
+													<label>Tên Của Bạn <span class="required">*</span></label>
+													<input type="text" required="required" name="Name">
+												</div>
+												<div class="col-md-6 col-custom comment-form-emai mb-3">
+													<label>Email <span class="required">*</span></label>
+													<input type="text" required="required" name="email">
+												</div>
+											</div>
+											<div class="comment-form-comment mb-3">
+												<label>Đánh Giá</label>
+												<textarea class="comment-notes" required="required"></textarea>
+											</div>
+											<div class="comment-form-submit">
+												<input type="submit" value="Gửi Đánh Giá" class="comment-submit btn obrien-button primary-btn">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Single Content -->
+					</div>
+					<div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="contact-tab">
+						<div class="shipping-policy">
+							<h4 class="title-3 mb-4">Chính Sách Vận Chuyển Của Cừa Hàng Chúng Tôi</h4>
+							<p class="desc-content mb-2">
+								Sau khi Quý khách đã đặt hàng thành công, nhân viên của chúng tôi sẽ tiến hành xác minh đơn hàng, đồng thời gửi cập nhật sớm nhất đến quý khách qua email.
+							</p>
+							<ul class="policy-list mb-2">
+								<li>1 - 2 Ngày Cao Điểm (Đa Phần Là Cuối Tuần)</li>
+								<li><a href="#">Hoàn Tiền Trong Vòng 30 Ngày Nếu Có Vấn Đề</a></li>
+								<li>Hỗ Trợ Trực Tiếp 24/7</li>
+								<li>Giao Hàng Hoả Tốc Trong Khu Vực Nội Thành Hà Nội</li>
+								<li>Các Khu Vực Còn Lại Cừa Hàng Không Nhận Giao Hàng Hoả Tốc</li>
+								<li>Thời gian được bắt đầu tính từ lúc đơn hàng của quý khách được xác nhận thành công. Nếu quý khách đặt hàng sau 4:00 chiều, thời gian giao hàng của quý khách được tính thêm 1 ngày</li>
+							</ul>
+							<h4 class="title-3 mb-4">Chính Sách Đổi Trả</h4>
+							<p class="desc-content mb-2">Khi nhận hàng, Quý khách cần lưu ý thực hiện:</p>
+							<ul class="policy-list mb-2">
+								<li>Kiểm tra xem có đúng và đủ các sản phẩm mà Khách hàng đã đặt mua</li>
+								<li>Kiểm tra bao bì còn nguyên hộp, đầy đủ tem nhãn và sản phẩm có bị hư hại do quá trình vận chuyển hay không</li>
+								<li>Ký xác nhận đã nhận sản phẩm</li>
+							</ul>
+							<p class="desc-content mb-2">Nếu không hài lòng với sản phẩm Quý khách có thể yêu cầu Nhân viên giao hàng xác nhận và trả lại hàng. JKFigure.com sẽ không chịu trách nhiệm giải quyết khiếu nại của Khách hàng sau khi Khách hàng đã ký nhận và thanh toán.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

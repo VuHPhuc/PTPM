@@ -57,6 +57,28 @@
     margin: 0 0 0 600px;
 }
 
+.shop_wrapper.grid_list .single-product .product-image {
+    -webkit-flex-basis: 35%;
+    -ms-flex-preferred-size: 35%;
+    flex-basis: 35%;
+    max-width: 35%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 20px 40px;
+}
+
+.product-content-listview {
+    -webkit-flex-basis: 65%;
+    -ms-flex-preferred-size: 65%;
+    flex-basis: 65%;
+    max-width: 65%;
+    padding: 0 30px 0px;
+    position: relative;
+    margin-bottom: 0;
+}
+
+
 /* carousel*/
 .carousel {
     position: relative;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PagedList.Core;
 using PTPM.Models;
 using System.Diagnostics;
 using static System.Net.WebRequestMethods;
@@ -10,65 +11,68 @@ namespace PTPM.Controllers
     public class ProductController : Controller
     {
         private readonly PtpmContext _context;
-
-        private readonly IHttpClientFactory _httpClientFactory;
-        public ProductController(PtpmContext context, IHttpClientFactory httpClientFactory)
+        public ProductController(PtpmContext context)
         {
             _context = context;
-            _httpClientFactory = httpClientFactory;
-
         }
-
-        public async Task<IActionResult> Index()
+        [Route("shop.html", Name = ("ShopProduct"))]
+        public IActionResult Index(int? page)
         {
-            List<Product> productList = new List<Product>();
-
-            using (HttpClient client = new HttpClient())
+            try
             {
-                try
-                {
-                    var u = "https://192.168.217.153/api/ProductApi/4";
-                    var api = Url.Action("Get", "ProductAPI", new { Id = 4 }, Request.Scheme);
-                    HttpResponseMessage response = await client.GetAsync(api);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string jsonContent = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(jsonContent);
-                        Product product = JsonConvert.DeserializeObject<Product>(jsonContent);
+                var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+                var pageSize = 10;
+                var lsTinDangs = _context.Products
+                    .AsNoTracking()
+                    .OrderBy(x => x.DateCreated);
+                PagedList<Product> models = new PagedList<Product>(lsTinDangs, pageNumber, pageSize);
 
-                        // Add the product to the list
-                        productList.Add(product);
-                    }
-                    else
-                    {
-                        throw new Exception($"Failed to fetch product list. Status code: {response.StatusCode}");
-                    }
-                }
-                catch (HttpRequestException ex)
-                {
-                    // Log the error or handle it accordingly
-                    Console.WriteLine($"HTTP request error: {ex.Message}");
-                    // Optionally, return an error view or redirect to a specific error page
-                    // return View("Error"); // You should have an "Error" view in your Views folder
-                    // Or redirect to a specific action that handles errors
-                    // return RedirectToAction("HandleError", "Error"); // Adjust accordingly
-                }
+                ViewBag.CurrentPage = pageNumber;
+                return View(models);
             }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        [Route("danhmuc/{Alias}", Name = ("ListProduct"))]
+        public IActionResult List(string Alias, int page = 1)
+        {
+            try
+            {
+                var pageSize = 10;
+                var danhmuc = _context.Categories.AsNoTracking().SingleOrDefault(x => x.Alias == Alias);
 
-            // Continue with the rest of your code
-            return View(productList);
+                var lsTinDangs = _context.Products
+                    .AsNoTracking()
+                    .Where(x => x.Catid == danhmuc.CatId)
+                    .OrderByDescending(x => x.DateCreated);
+                PagedList<Product> models = new PagedList<Product>(lsTinDangs, page, pageSize);
+                ViewBag.CurrentPage = page;
+                ViewBag.CurrentCat = danhmuc;
+                return View(models);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-
-
-        public IActionResult Detail(int id)
+        [Route("/{Alias}-{id}.html", Name = ("ProductDetails"))]
+        public IActionResult Details(int id)
         {
-            var product = _context.Products.Include(x => x.Cat).FirstOrDefault(x => x.ProductId == id);
+            var product = _context.Products.Include(x => x.Catid).FirstOrDefault(x => x.ProductId == id);
             if (product == null)
             {
                 return RedirectToAction("Index");
             }
-
+            var lsProduct = _context.Products
+                .AsNoTracking()
+                .Where(x => x.Catid == product.Catid && x.ProductId != id && x.Active == true)
+                .Take(4)
+                .OrderByDescending(x => x.DateCreated)
+                .ToList();
+            ViewBag.SanPham = lsProduct;
             return View(product);
         }
     }

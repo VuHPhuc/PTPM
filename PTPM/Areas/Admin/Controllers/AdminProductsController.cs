@@ -26,17 +26,17 @@ namespace PTPM.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts
-        public IActionResult Index(int page = 1, int CatID = 0)
+        public IActionResult Index(int page = 1, int Catid = 0)
         {
             var pageNumber = page;
             var pageSize = 10;
 
             List<Product> lsProducts = new List<Product>();
-            if (CatID != 0)
+            if (Catid != 0)
             {
                 lsProducts = _context.Products
                 .AsNoTracking()
-                .Where(x => x.Catid == CatID)
+                .Where(x => x.Catid == Catid)
                 .Include(x => x.Cat)
                 .OrderBy(x => x.ProductId).ToList();
             }
@@ -50,17 +50,17 @@ namespace PTPM.Areas.Admin.Controllers
             PagedList<Product> models = new PagedList<Product>(lsProducts.AsQueryable(), pageNumber, pageSize);
 
 
-            ViewBag.CurrentCateID = CatID;
+            ViewBag.CurrentCateID = Catid;
             ViewBag.CurrentPage = pageNumber;
-            ViewData["Catid"] = new SelectList(_context.Categories, "catid", "CatName");
+            ViewData["Catid"] = new SelectList(_context.Categories, "Catid", "CatName");
 
 
             return View(models);
         }
-        public IActionResult Filtter(int CatID = 0)
+        public IActionResult Filtter(int Catid = 0)
         {
-            var url = $"/Admin/AdminProducts?CatID={CatID}";
-            if (CatID == 0)
+            var url = $"/Admin/AdminProducts?Catid={Catid}";
+            if (Catid == 0)
             {
                 url = $"/Admin/AdminProducts";
             }
@@ -89,7 +89,7 @@ namespace PTPM.Areas.Admin.Controllers
         // GET: Admin/AdminProducts/Create
         public IActionResult Create()
         {
-            ViewData["Catid"] = new SelectList(_context.Categories, "catid", "CatName");
+            ViewData["Catid"] = new SelectList(_context.Categories, "Catid", "CatName");
             return View();
         }
 
@@ -119,7 +119,7 @@ namespace PTPM.Areas.Admin.Controllers
                 _notyfService.Success("Thêm sản phẩm thành công");
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Catid"] = new SelectList(_context.Categories, "catid", "CatName", Product.Catid);
+            ViewData["Catid"] = new SelectList(_context.Categories, "Catid", "CatName", Product.Catid);
             return View(Product);
         }
 
@@ -136,7 +136,7 @@ namespace PTPM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["Catid"] = new SelectList(_context.Categories, "catid", "CatName", Product.Catid);
+            ViewData["Catid"] = new SelectList(_context.Categories, "Catid", "CatName", Product.Catid);
             return View(Product);
         }
 
@@ -184,7 +184,7 @@ namespace PTPM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Catid"] = new SelectList(_context.Categories, "catid", "CatName", Product.Catid);
+            ViewData["Catid"] = new SelectList(_context.Categories, "Catid", "CatName", Product.Catid);
             return View(Product);
         }
 
