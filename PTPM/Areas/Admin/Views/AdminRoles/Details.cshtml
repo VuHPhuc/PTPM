@@ -1,0 +1,35 @@
+﻿@model PTPM.Models.Role
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-body">
+    <h2>Thông Tin Chi Tiết Quyền Truy Cập</h2>
+    <hr />
+    <div>
+        <h4>Chi Tiết Chức Vụ</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Tên: 
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleName)
+            </dd>
+            <dt class="col-sm-2">
+                Mô Tả:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.RoleId">Chỉnh Sửa</a> |
+        <a class="btn btn-secondary btn-tone m-r-5" asp-action="Index">Quay Về</a>
+    </div>
+
+</div>

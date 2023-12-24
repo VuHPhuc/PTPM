@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PTPM.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Quản lý Gian Hàng Sản Phẩm</h1>
+
+<div class="row m-b-30">
+    <div class="col-lg-8">
+        <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminProducts" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm mới</span></a>
+    </div>
+    <div class="col-lg-4 ">
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên Sản Phẩm</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Tồn Kho</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.ProductId</th>
+                        <td>@item.ProductName</td>
+                        <td>@item.Price.Value.ToString("#,###,##0") VND</td>
+                        <td>@item.UnitslnStock</td>
+
+                        <td>
+                            <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.ProductId">Xem chi Tiết</a>
+                            <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">Chỉnh Sửa</a>
+                            <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.ProductId">Xóa</a>
+
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>

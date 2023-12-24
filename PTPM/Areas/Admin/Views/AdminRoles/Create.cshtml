@@ -1,0 +1,35 @@
+﻿@model PTPM.Models.Role
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+    <h4>Thêm Mới Quyền Truy Cập</h4>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="RoleName" class="control-label"></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Thêm mới" class="btn btn-primary" /> |
+                    <a class="btn btn-secondary btn-tone m-r-5" asp-action="Index">Quay Về</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

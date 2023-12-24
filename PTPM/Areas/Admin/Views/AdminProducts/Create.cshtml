@@ -1,0 +1,116 @@
+﻿@model PTPM.Models.Product
+
+@{
+    ViewData["Title"] = "Thêm Sản Phẩm Mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Thêm Sản Phẩm Mới</h1>
+
+<form asp-controller="AdminProducts" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Tên sản phẩm</label>
+                        <input type="text" class="form-control" asp-for="ProductName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="ShortDesc">Mô tả Ngắn</label>
+                        <input type="text" class="form-control" asp-for="ShortDesc">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productPrice">Giá bán</label>
+                            <input type="text" class="form-control" asp-for="Price">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productDiscount">% Giảm sản phẩm</label>
+                            <input type="text" class="form-control" asp-for="Discount">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label class="font-weight-semibold" for="productCategory">Danh mục sản phẩm</label>
+                            <select class="custom-select" asp-for="Catid" style="min-width: 200px;" asp-items="ViewBag.Catid">
+                                <option value="" disabled selected>Chọn danh mục</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="font-weight-semibold" for="productUnitslnStock">Hàng tồn kho</label>
+                            <input type="text" class="form-control" asp-for="UnitslnStock">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productThumb">Ảnh sản phẩm</label>
+                        <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                        <span asp-validation-for="Thumb" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="Active" checked="">
+                                    <label for="Active"></label>
+                                </div>
+                                <label>Trạng Thái</label>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="HomeFlag">
+                                    <label for="HomeFlag"></label>
+                                </div>
+                                <label>HomeFlag</label>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="BestSellers">
+                                    <label for="BestSellers"></label>
+                                </div>
+                                <label>Bán Chạy</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-semibold" for="productSize">Tiêu Đề</label>
+                                <input type="text" class="form-control" asp-for="Title">
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-semibold" for="productColors">Mô tả nổi bật (Meta description)</label>
+                                <input type="text" class="form-control" asp-for="MetaDesc">
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-semibold" for="productFit">Từ nổi bật ( Meta Keyword)</label>
+                                <input type="text" class="form-control" asp-for="MetaKey">
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-semibold" for="productFit">Tags</label>
+                                <input type="text" class="form-control" asp-for="Tags">
+                            </div>
+                            <div class="card-body">
+                                <textarea class="summernote" asp-for="Desciption"></textarea>
+                            </div>
+                            <div class="m-b-15">
+                                <button class="btn btn-primary">
+                                    <i class="anticon anticon-save"></i>
+                                    <span>Tạo</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+

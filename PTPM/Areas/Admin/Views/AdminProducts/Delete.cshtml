@@ -1,0 +1,84 @@
+﻿@model PTPM.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+    <h2 class="card-title">Xác nhận xóa quyền truy cập?</h2>
+    <hr />
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.Catid</td>
+                </tr>
+                <tr>
+                    <td>Tên Sản Phẩm:</td>
+                    <td>@Model.ProductName</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả Ngắn:</td>
+                    <td>@Model.ShortDesc</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả:</td>
+                    <td>@Model.Desciption</td>
+                </tr>
+                <tr>
+                    <td>ID sản phẩm:</td>
+                    <td>@Model.Catid</td>
+                </tr>
+                <tr>
+                    <td>Giá:</td>
+                    <td>@Model.Price</td>
+                </tr>
+                <tr>
+                    <td>Giảm Giá:</td>
+                    <td>@Model.Discount</td>
+                </tr>
+                <tr>
+                    <td>Hình Ảnh:</td>
+                    <td>
+                        <img width="200" height="200" src="~/images/products/@Model.Thumb" alt="@Model.Title" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ngày Tạo:</td>
+                    <td>@Model.DateCreated</td>
+                </tr>
+                <tr>
+                    <td>Ngày Chỉnh Sửa:</td>
+                    <td>@Model.DateModified</td>
+                </tr>
+                <tr>
+                    <td>Tiêu Đề:</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>MetaDesc:</td>
+                    <td>@Model.MetaDesc</td>
+                </tr>
+                <tr>
+                    <td>MetaKey:</td>
+                    <td>@Model.MetaKey</td>
+                </tr>
+                <tr>
+                    <td>Tồn Kho:</td>
+                    <td>@Model.UnitslnStock</td>
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@Model.Catid">
+                            <input type="hidden" asp-for="Catid" />
+                            <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> | <a class="btn btn-secondary btn-tone m-r-5" asp-action="Index">Quay Về</a>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model PTPM.Models.Role
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-body">
+    <h2 class="card-title">Xác nhận xóa quyền truy cập?</h2>
+    <hr />
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.RoleId</td>
+                </tr>
+                <tr>
+                    <td>Tên quyền truy cập:</td>
+                    <td>@Model.RoleName</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả:</td>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@Model.RoleId">
+                            <input type="hidden" asp-for="RoleId" />
+                            <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> | <a class="btn btn-secondary btn-tone m-r-5" asp-action="Index">Quay Về</a>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

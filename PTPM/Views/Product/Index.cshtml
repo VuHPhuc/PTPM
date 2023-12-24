@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PTPM.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="container">
+        <div class=" bg-secondary">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="h1">Sản Phẩm</h1>
+                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Trang Chủ / Sản Phẩm</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-header">
+            <h1>các sản phẩm hiện có</h1>
+        </div>
+        <div class="row shop_wrapper grid_list">
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    string url = $"/{item.Alias}-{item.ProductId}.html";
+                    <div class="col-12 col-custom product-area">
+                        <div class="single-product position-relative">
+                            <div class="product-image">
+                                <a class="d-block" href="@url">
+
+                                    <img src="~/images/products/@item.Thumb" alt="@item.Title" class="product-image-1 w-100" />
+                                    <img src="~/images/products/@item.Thumb" alt="@item.Title" class="product-image-2 position-absolute w-100" />
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-title">
+                                    <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
+                                </div>
+                                <div class="price-box">
+                                    <span class="regular-price ">@item.Price.Value.ToString("#,##0") VNĐ</span>
+
+                                </div>
+                            </div>
+                            <div class="add-action d-flex position-absolute">
+                                <a href="cart.html" title="Thêm Vào Giỏ">
+                                    <i class="ion-bag"></i>
+                                </a>
+                                <a href="compare.html" title="Compare">
+                                    <i class="ion-ios-loop-strong"></i>
+                                </a>
+                                <a href="wishlist.html" title="Thêm Vào Danh Sách Mong Muốn">
+                                    <i class="ion-ios-heart-outline"></i>
+                                </a>
+                            </div>
+                            <div class="product-content-listview">
+                                <div class="product-title">
+                                    <h4 class="title-2"> <a href="@url">@item.ProductName</a></h4>
+                                </div>
+                                <div class="price-box">
+                                    <span class="regular-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+
+                                </div>
+                                <div class="add-action-listview d-flex">
+                                    <a href="cart.html" title="Thêm Vào Giỏ">
+                                        <i class="ion-bag"></i>
+                                    </a>
+                                </div>
+                                <p class="desc-content">
+                                    @Html.Raw(item.ShortDesc)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+</body>

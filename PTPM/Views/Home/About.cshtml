@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Về Chúng Tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="container">
+        <div class=" bg-secondary">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="h1">Về Chúng Tôi</h1>
+                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Trang Chủ / Về Chúng Tôi</a>
+            </div>
+        </div>
+    </div>
+    <section class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Các Hãng Sản Xuất</h1>
+                    <p>
+                        Tất Cả Các Sản Phẩm Đều Được Lấy Từ Các Hãng Sản Xuất Vô Cùng Nổi Tiếng Ở Dưới Đây
+                    </p>
+                </div>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
+                                <div class="carousel-inner product-links-wap" role="listbox">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-1.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-2.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-3.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-4.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-5.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-6.png" />
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <img src="~/assets/img/brand-logo/brand-7.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

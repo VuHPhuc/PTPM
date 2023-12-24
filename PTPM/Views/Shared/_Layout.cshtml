@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="~/assets/img/icon.png" asp-append-version="true" />
+    <title>JK Figure - Trang Web Bán Mô Hình Số 1 Việt Nam</title>
+    <link rel="stylesheet" href="~/assets/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PTPM.styles.css" asp-append-version="true" />
+    <script src="~/assets/js/main.js" asp-append-version="true"></script>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderLayout.cshtml")
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    @await Html.PartialAsync("_FooterLayout.cshtml")
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
